@@ -111,8 +111,8 @@ function DailyRoutine()
     cur_day     = GetDate(DAY_OF_WEEK)
     abs_day     = GetDate(DAY)
 
-	cur_week    = GetDate(WEEK)
-	cur_month   = GetDate(MONTH)
+    cur_week    = GetDate(WEEK)
+    cur_month   = GetDate(MONTH)
     abs_week    = 4 * (cur_month - 1) + cur_week
     
     MapSpellsExt.OnDayStarted()
