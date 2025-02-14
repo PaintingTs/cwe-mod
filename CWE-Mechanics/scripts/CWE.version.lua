@@ -1,0 +1,3 @@
+CWE_VERSION = "1.4"
+
+CWE_DEBUG = 1
