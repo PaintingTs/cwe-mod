@@ -22,8 +22,14 @@ STAT_SWAP_MAP = {
         to      = STAT_SPELL_POWER    
     },
 
-    {   -- Dark Knowledge --
-        skills  = { SKILL_DARK_MAGIC },         races = { TOWN_INFERNO, TOWN_DUNGEON },
+    {   -- Dark Knowledge + Corrupted Light --
+        skills  = { SKILL_DARK_MAGIC, SKILL_LIGHT_MAGIC },  races = { TOWN_INFERNO, TOWN_DUNGEON },
+        from    = STAT_SPELL_POWER,  
+        to      = STAT_KNOWLEDGE    
+    },
+
+    {   -- Corrupted Light --
+        skills  = { SKILL_LIGHT_MAGIC },         races = { TOWN_INFERNO, TOWN_DUNGEON },
         from    = STAT_SPELL_POWER,  
         to      = STAT_KNOWLEDGE    
     },
