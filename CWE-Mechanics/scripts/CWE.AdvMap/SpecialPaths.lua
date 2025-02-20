@@ -28,12 +28,6 @@ STAT_SWAP_MAP = {
         to      = STAT_KNOWLEDGE    
     },
 
-    {   -- Corrupted Light --
-        skills  = { SKILL_LIGHT_MAGIC },         races = { TOWN_INFERNO, TOWN_DUNGEON },
-        from    = STAT_SPELL_POWER,  
-        to      = STAT_KNOWLEDGE    
-    },
-
     {   -- Sagacious Lord --
         skills  = { SKILL_LEARNING },           races = { TOWN_INFERNO },
         from    = STAT_SPELL_POWER,  
@@ -142,10 +136,11 @@ function SpecialPaths._StatSwapRollback(sHeroName, tMap)
 end
 
 function SpecialPaths._Show(sHeroName, srcStat, dstStat, srcAmount, dstAmount)
+    sleep(5)
     ShowFlyingSign('txt/special-path.txt', sHeroName, GetHeroOwner(sHeroName), 2)
-    sleep(4)
+    sleep(5)
     ShowChangeStat(sHeroName, srcStat, -srcAmount)
-    sleep(4)
+    sleep(5)
     ShowChangeStat(sHeroName, dstStat, dstAmount)
 end
 

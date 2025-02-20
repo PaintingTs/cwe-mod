@@ -38,7 +38,7 @@ function ClanFeud.CheckToggleModifiers()
         if tExpectedModifiers ~= tCurrentModifiers then
             -- restore the stats (if needed) when modifiers have been changed --
             if tCurrentModifiers then
-                tClanFeudModifiers[sHeroName] = nil
+                tClanFeudModifiers[sHeroName] = {} -- rollback in progress. If battle ends - rollback aborts
                 startThread(RollbackFeudModifiers, sHeroName, tCurrentModifiers)
             end
 
@@ -68,16 +68,20 @@ function ApplyFeudModifiers(sHeroName, tModifiers)
 
     local flyingSignText = 'txt/feud-penalty.txt'
     if isBonus then flyingSignText = 'txt/feud-bonus.txt' end
-    sleep(3)
+    sleep(4)
     ShowFlyingSign(flyingSignText, sHeroName, GetHeroOwner(sHeroName), 3.0)
 end
 
 
 function RollbackFeudModifiers(sHeroName, tModifiers)
     for nBonusID, nModifier in tModifiers do
-        sleep(3)
-        GiveHeroBattleBonus(sHeroName, nBonusID, -nModifier)
+        if tClanFeudModifiers[sHeroName] then -- protection against battle end with 2nd clan creatures lost
+            GiveHeroBattleBonus(sHeroName, nBonusID, -nModifier)
+        end
     end
+    tClanFeudModifiers[sHeroName] = nil 
+    sleep(4)
+    ShowFlyingSign('txt/feud-penalty-ends.txt', sHeroName, GetHeroOwner(sHeroName), 3.0)
 end
 
 
