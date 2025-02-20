@@ -51,7 +51,7 @@ function ForcesOfNatureAwait(sHeroName, sTownName)
             end
             
             if gmLvl >= 3 and summoningMastery >= 1 then
-                learned = TeachHeroSpell(sHeroName, SPELL_EARTHQUAKE)
+                -- learned = TeachHeroSpell(sHeroName, SPELL_EARTHQUAKE) -- #Universe
                 tMysticPondLearnLevel[sHeroName] = 3
             end
             
@@ -59,7 +59,7 @@ function ForcesOfNatureAwait(sHeroName, sTownName)
             if tMysticPondSeed[sTownName] == 1 then spell = SPELL_SUMMON_HIVE end
             
             if gmLvl >= 4 and summoningMastery >= 2 then
-                learned = TeachHeroSpell(sHeroName, spell)
+                -- learned = TeachHeroSpell(sHeroName, spell) -- #Universe
                 tMysticPondLearnLevel[sHeroName] = 4
             end
             

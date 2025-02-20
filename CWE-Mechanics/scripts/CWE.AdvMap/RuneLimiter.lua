@@ -202,12 +202,14 @@ function RuneLimiter._BattleObjectsEnableSwitcher(enable)
     for _, sObjectName in GetObjectNamesByType('TOWN') do
         SetObjectEnabled(sObjectName, enable)
     end
+    --[[
     for _, sObjectName in GetObjectNamesByType('CREATURE') do
         SetObjectEnabled(sObjectName, enable)
     end
     for _, sObjectName in GetCombatableBuildings() do
         SetObjectEnabled(sObjectName, enable)
     end
+    ]]-- #Universe
 end
 
 

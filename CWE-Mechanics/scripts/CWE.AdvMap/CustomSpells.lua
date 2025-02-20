@@ -6,7 +6,7 @@ ADV_SPELL_REBUILD = CUSTOM_ABILITY_3
 ADV_SPELL_PORTAL = CUSTOM_ABILITY_4
 
 REBUILD_HERO_LVL = 1
-REBUILD_COST = { [GOLD] = 25000, [WOOD] = 15, [ORE] = 15, [CRYSTAL] = 5, [MERCURY] = 5, [GEM] = 5, [SULFUR] = 5 } 
+REBUILD_COST = { [GOLD] = 15000, [WOOD] = 15, [ORE] = 15, [CRYSTAL] = 5, [MERCURY] = 5, [GEM] = 5, [SULFUR] = 5 } 
 
 TP_EXT_MANA_COST = 15
 
@@ -23,7 +23,7 @@ function CustomSpells.AvailabilityThread()
     while not nil do
         for _, sHeroName in GetObjectNamesByType('HERO') do
             local sTownName = GetHeroTown_Gate(sHeroName)
-            CustomSpells._CheckTpAvailable(sHeroName, sTownName)
+            -- CustomSpells._CheckTpAvailable(sHeroName, sTownName) -- #Universe
             CustomSpells._CheckRebuildAvailable(sHeroName, sTownName)
         end
 

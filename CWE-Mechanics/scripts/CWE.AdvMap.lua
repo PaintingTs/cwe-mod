@@ -137,11 +137,11 @@ function WeeklyRoutine()
 
     UpdateMonsterStorage()
 
-    -- Dungeon Pit Bonus --
-    DungeonPitExt.CalcBonus()
-    DungeonPitExt.ApplyBonus()
+    ---- Dungeon Pit Bonus ----
+    -- DungeonPitExt.CalcBonus()  -- #Universe
+    -- DungeonPitExt.ApplyBonus() -- #Universe
     
-    DeathWeeksNerf.RecoverDwellingCreatures()
+    -- DeathWeeksNerf.RecoverDwellingCreatures() -- #Universe
 end
 
 
@@ -162,12 +162,12 @@ function ContinousRoutine()
     RuneLimiter.CheckSetReset()
 
     -- Stats for moddifiing summon spells in combat --
-    TrackStatsForCombatScript()
+    -- TrackStatsForCombatScript() -- #Universe
 
     -- Dungeon dwelling checker (for pit bonus detection)
     if GetDate(DAY_OF_WEEK) == 7 then
-        DeathWeeksNerf.SaveDwellingCount()
-        DungeonPitExt.SaveDwellingCount()
+        -- DeathWeeksNerf.SaveDwellingCount() -- #Universe
+        -- DungeonPitExt.SaveDwellingCount() -- #Universe
     end
 
 end

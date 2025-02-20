@@ -28,12 +28,6 @@ STAT_SWAP_MAP = {
         to      = STAT_KNOWLEDGE    
     },
 
-    {   -- Sagacious Lord --
-        skills  = { SKILL_LEARNING },           races = { TOWN_INFERNO },
-        from    = STAT_SPELL_POWER,  
-        to      = STAT_DEFENCE  
-    },
-
     {   -- Mystic Protector --
         skills  = { SKILL_LEADERSHIP },         races = { TOWN_INFERNO, TOWN_DUNGEON, TOWN_ACADEMY },
         from    = STAT_SPELL_POWER,  
@@ -41,7 +35,7 @@ STAT_SWAP_MAP = {
     },
 
     {   -- Battle Mage / Lord --
-        skills  = { SKILL_OFFENCE },            races = { TOWN_ACADEMY, TOWN_DUNGEON, TOWN_NECROMANCY },
+        skills  = { SKILL_OFFENCE },            races = { TOWN_ACADEMY, TOWN_NECROMANCY },
         from    = STAT_SPELL_POWER,  
         to      = STAT_ATTACK  
     },
