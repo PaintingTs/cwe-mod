@@ -21,9 +21,6 @@ function MapSpellsExt.OnDayStarted()
     for _, sHeroName in GetObjectNamesByType('HERO') do      
         MapSpellsExt.tMaxMovePoints[sHeroName] = GetHeroStat(sHeroName, STAT_MOVE_POINTS)
     end
-
-    DarkRitualExt.OnNewDay()
-    SummonCreaturesExt.OnNewDay()
 end
 
 function MapSpellsExt.CheckCasts()
@@ -52,27 +49,10 @@ function GetCurrentStats(sHeroName)
 end
 
 ---------------------------------------
-DARK_RITUAL_EFFECT_DAYS = 5
-DARK_RITUAL_DAYLY_MP_BONUS = 400
+DARK_RITUAL_BONUS_DAYS = { 1, 7 }
+DARK_RITUAL_BONUS = 0.75
 
 DarkRitualExt = {} --> MODULE
-DarkRitualExt.tDaysSinceCast = {}
-
-function DarkRitualExt.OnNewDay()
-    local tDaysSinceCast = DarkRitualExt.tDaysSinceCast
-    for sHeroName, nDays in tDaysSinceCast do
-        tDaysSinceCast[sHeroName] = nDays + 1
-
-        if tDaysSinceCast[sHeroName] <= DARK_RITUAL_EFFECT_DAYS then
-            ChangeHeroStat(sHeroName, STAT_MOVE_POINTS, DARK_RITUAL_DAYLY_MP_BONUS)
-            print_debug___ (sHeroName.." recieved Dark Ritual MP bonus")
-
-            ShowFlyingSign({ 'txt/move-points-bonus.txt'; val = DARK_RITUAL_DAYLY_MP_BONUS }, 
-                sHeroName, GetHeroOwner(sHeroName), 4)
-        end
-    end
-end
-
 
 function DarkRitualExt.CheckCast(sHeroName, tStored, tNewStats)
     if HasHeroSkill(sHeroName, PERK_DARK_RITUAL) then
@@ -87,39 +67,24 @@ function DarkRitualExt.CheckCast(sHeroName, tStored, tNewStats)
             and tNewStats.floor == tStored.floor
         then
             print_debug___ (sHeroName.." casts Dark Ritual")
-            DarkRitualExt.tDaysSinceCast[sHeroName] = 0
-            -- maybe next-battle bonus? --
+            if contains(DARK_RITUAL_BONUS_DAYS, GetDate(DAY_OF_WEEK)) then
+                ChangeHeroStat(sHeroName, STAT_MOVE_POINTS, floor(maxMP * DARK_RITUAL_BONUS))
+            end
         end
     end
 end
 
 ---------------------------------------
-SUMMON_CREATURES_DAYLY_MP_BONUS = 500
+SUMMON_CREATURES_MP_COST = 500
 
 SummonCreaturesExt = {} --> MODULE
-SummonCreaturesExt.tMpStorage = {}
-
-function SummonCreaturesExt.OnNewDay()
-    local tMpStorage = SummonCreaturesExt.tMpStorage
-    for sHeroName, nMPBonus in tMpStorage do
-        local mpBonusToday = SUMMON_CREATURES_DAYLY_MP_BONUS
-
-        if nMPBonus < SUMMON_CREATURES_DAYLY_MP_BONUS then mpBonusToday = nMPBonus end 
-
-        ChangeHeroStat(sHeroName, STAT_MOVE_POINTS, mpBonusToday)
-        tMpStorage[sHeroName] = tMpStorage[sHeroName] - mpBonusToday
-        print_debug___ (sHeroName.." recieved SummonCreatures MP bonus: "..mpBonusToday)
-
-        ShowFlyingSign({ 'txt/move-points-bonus.txt'; val = mpBonusToday }, 
-            sHeroName, GetHeroOwner(sHeroName), 4)
-    end
-end
 
 function SummonCreaturesExt.CheckCast(sHeroName, tStored, tNewStats)
     if KnowHeroSpell(sHeroName, SPELL_SUMMON_CREATURES) then
         local maxMP = MapSpellsExt.tMaxMovePoints[sHeroName]
         local deltaMP = tStored.movePoints - tNewStats.movePoints
-        local is75 = deltaMP >= floor(0.75 * maxMP) and deltaMP <= ceil(0.75 * maxMP)
+        local is75 = deltaMP >= floor(0.75 * maxMP - 1) and deltaMP <= ceil(0.75 * maxMP + 1)
+        -- +-1 is needed becuase of the strange way game calculates: 0.75 * 2500 => 1874 instead of 1875
         
         if is75 and tNewStats.mana < tStored.mana 
             and tNewStats.x == tStored.x 
@@ -127,8 +92,7 @@ function SummonCreaturesExt.CheckCast(sHeroName, tStored, tNewStats)
             and tNewStats.floor == tStored.floor
         then
             print_debug___ (sHeroName.." casts Summon Creatures")
-            local tMpStorage = SummonCreaturesExt.tMpStorage
-            tMpStorage[sHeroName] = (tMpStorage[sHeroName] or 0) + maxMP
+            ChangeHeroStat(sHeroName, STAT_MOVE_POINTS, deltaMP - SUMMON_CREATURES_MP_COST)
         end
     end
 end
