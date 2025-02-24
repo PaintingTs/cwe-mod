@@ -74,14 +74,19 @@ end
 
 
 function RollbackFeudModifiers(sHeroName, tModifiers)
-    for nBonusID, nModifier in tModifiers do
-        if tClanFeudModifiers[sHeroName] then -- protection against battle end with 2nd clan creatures lost
+    sleep(6) -- waiting for end-battle trigger
+    if tClanFeudModifiers[sHeroName] then -- protection against battle end with 2nd clan creatures lost
+        for nBonusID, nModifier in tModifiers do
             GiveHeroBattleBonus(sHeroName, nBonusID, -nModifier)
+            sleep(4)
+        end
+        tClanFeudModifiers[sHeroName] = nil
+        
+        if length(tModifiers) > 0 then
+            ShowFlyingSign('txt/feud-penalty-ends.txt', sHeroName, GetHeroOwner(sHeroName), 3.0) 
         end
     end
-    tClanFeudModifiers[sHeroName] = nil 
-    sleep(4)
-    ShowFlyingSign('txt/feud-penalty-ends.txt', sHeroName, GetHeroOwner(sHeroName), 3.0)
+    -- small bug: if 2nd grade falls in battle - no feud-penalty-ends message will be shown
 end
 
 

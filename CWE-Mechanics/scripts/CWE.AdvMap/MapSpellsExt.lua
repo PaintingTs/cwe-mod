@@ -66,6 +66,9 @@ function DarkRitualExt.OnNewDay()
         if tDaysSinceCast[sHeroName] <= DARK_RITUAL_EFFECT_DAYS then
             ChangeHeroStat(sHeroName, STAT_MOVE_POINTS, DARK_RITUAL_DAYLY_MP_BONUS)
             print_debug___ (sHeroName.." recieved Dark Ritual MP bonus")
+
+            ShowFlyingSign({ 'txt/move-points-bonus.txt'; val = DARK_RITUAL_DAYLY_MP_BONUS }, 
+                sHeroName, GetHeroOwner(sHeroName), 4)
         end
     end
 end
@@ -106,6 +109,9 @@ function SummonCreaturesExt.OnNewDay()
         ChangeHeroStat(sHeroName, STAT_MOVE_POINTS, mpBonusToday)
         tMpStorage[sHeroName] = tMpStorage[sHeroName] - mpBonusToday
         print_debug___ (sHeroName.." recieved SummonCreatures MP bonus: "..mpBonusToday)
+
+        ShowFlyingSign({ 'txt/move-points-bonus.txt'; val = mpBonusToday }, 
+            sHeroName, GetHeroOwner(sHeroName), 4)
     end
 end
 
