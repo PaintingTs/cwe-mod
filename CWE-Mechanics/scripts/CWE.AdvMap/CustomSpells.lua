@@ -6,7 +6,7 @@ ADV_SPELL_REBUILD = CUSTOM_ABILITY_3
 ADV_SPELL_PORTAL = CUSTOM_ABILITY_4
 
 REBUILD_HERO_LVL = 10
-REBUILD_COST = { [GOLD] = 15000, [WOOD] = 15, [ORE] = 15, [CRYSTAL] = 5, [MERCURY] = 5, [GEM] = 5, [SULFUR] = 5 } 
+REBUILD_COST = { [GOLD] = 10000, [WOOD] = 10, [ORE] = 10, [CRYSTAL] = 5, [MERCURY] = 5, [GEM] = 5, [SULFUR] = 5 } 
 
 TP_EXT_MANA_COST = 15
 
@@ -16,6 +16,15 @@ tPortalAlreadyUsed = {}
 
 function CustomSpells.OnNewDay()
     tPortalAlreadyUsed = {}
+
+    -- Rebuild fix for Heaven training abuse --
+    if GetDate(DAY_OF_WEEK) == 1 then
+        for _, sTownName in GetObjectNamesByType('TOWN_HEAVEN') do
+            if GetTownBuildingLimitLevel(sTownName, TOWN_BUILDING_HAVEN_TRAINING_GROUNDS) == 0 then
+                SetTownBuildingLimitLevel(sTownName, TOWN_BUILDING_HAVEN_TRAINING_GROUNDS, 1)
+            end
+        end
+    end
 end
 
 
@@ -113,6 +122,7 @@ end
 function RebuildYes(sHeroName, sTownName)
     tRebuildInProgress[sHeroName] = not nil
     local nTargetRace = GetHeroRace(sHeroName)
+    local nCurrentRace = GetTownRace(sTownName)
 
     local nPlayerID = GetHeroOwner(sHeroName)
     local tResources = GetResourcesIfCanRebuild(nPlayerID)
@@ -139,6 +149,11 @@ function RebuildYes(sHeroName, sTownName)
     TransformTown(sTownName, nTargetRace)
     sleep(6)
     ShowRebuildProgress(sTownName, 20)
+
+    -- Heaven Training abuse fix --
+    if nCurrentRace == TOWN_HEAVEN and nTargetRace == TOWN_HEAVEN then
+        SetTownBuildingLimitLevel(sTownName, TOWN_BUILDING_HAVEN_TRAINING_GROUNDS, 0)
+    end
 
     -- rebuild buildings -- 
     for nBuildingID, nBuildingLvl in tBuildings do
