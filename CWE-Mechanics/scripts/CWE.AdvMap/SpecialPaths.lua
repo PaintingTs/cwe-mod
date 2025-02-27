@@ -34,7 +34,7 @@ STAT_SWAP_MAP = {
         to      = STAT_DEFENCE  
     },
 
-    {   -- Battle Mage / Lord --
+    {   -- Battle Mage / Lord (Weapon Enchanter) --
         skills  = { SKILL_OFFENCE },            races = { TOWN_ACADEMY, TOWN_NECROMANCY },
         from    = STAT_SPELL_POWER,  
         to      = STAT_ATTACK  
