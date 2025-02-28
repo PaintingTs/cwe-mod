@@ -127,7 +127,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>6</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
@@ -135,7 +135,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>6</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
@@ -156,9 +156,8 @@
 					<Item>SPELL_RESURRECT</Item>
 					<Item>SPELL_SUMMON_ELEMENTALS</Item>
 					<Item>SPELL_BLIND</Item>
-					<Item>SPELL_DEEP_FREEZE</Item>
-					<Item>SPELL_TELEPORT_FINISH_EFFECT</Item>
 					<Item>SPELL_CONJURE_PHOENIX</Item>
+					<Item>SPELL_TELEPORT_FINISH_EFFECT</Item>
 				</PreferredSpellsFromSpellShop>
 			</obj>
 		</Item>
@@ -227,7 +226,7 @@
 					<KnowledgeProb>45</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
-					<Item>SPELL_SUMMON_ELEMENTALS</Item>
+					<Item>SPELL_IMPLOSION</Item>
 					<Item>SPELL_CHAIN_LIGHTNING</Item>
 					<Item>SPELL_DEEP_FREEZE</Item>
 					<Item>SPELL_BERSERK</Item>
@@ -298,9 +297,9 @@
 				</SkillsProbs>
 				<AttributeProbs>
 					<OffenceProb>40</OffenceProb>
-					<DefenceProb>15</DefenceProb>
+					<DefenceProb>10</DefenceProb>
 					<SpellpowerProb>30</SpellpowerProb>
-					<KnowledgeProb>15</KnowledgeProb>
+					<KnowledgeProb>20</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_HYPNOTIZE</Item>
@@ -416,7 +415,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>6</Prob>
+						<Prob>5</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
@@ -432,7 +431,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>5</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
@@ -444,9 +443,9 @@
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>25</OffenceProb>
+					<OffenceProb>30</OffenceProb>
 					<DefenceProb>15</DefenceProb>
-					<SpellpowerProb>45</SpellpowerProb>
+					<SpellpowerProb>40</SpellpowerProb>
 					<KnowledgeProb>15</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
