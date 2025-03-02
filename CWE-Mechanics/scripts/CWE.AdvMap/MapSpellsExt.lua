@@ -30,7 +30,7 @@ function MapSpellsExt.CheckCasts()
 
             -- CheckTpCast(sHeroName, tStored, tNewStats) -- obsolete --
             DarkRitualExt.CheckCast(sHeroName, tStored, tNewStats)
-            SummonCreaturesExt.CheckCast(sHeroName, tStored, tNewStats)
+            -- SummonCreaturesExt.CheckCast(sHeroName, tStored, tNewStats) -- Is done just via config
 
             MapSpellsExt.tStatsStorage[sHeroName] = tNewStats
         end
