@@ -55,7 +55,7 @@
 		<Mercury>0</Mercury>
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
-		<Gem>1</Gem>
+		<Gem>1</Gem>  <!-- Same as vanilla 3.1 -->
 		<Gold>0</Gold>
 	</sSpellCost>
 	<IsAreaAttack>false</IsAreaAttack>

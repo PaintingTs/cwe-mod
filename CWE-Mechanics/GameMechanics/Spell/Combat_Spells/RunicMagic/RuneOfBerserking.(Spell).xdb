@@ -51,7 +51,7 @@
 	</duration>
 	<sSpellCost>
 		<Wood>0</Wood>
-		<Ore>2</Ore>
+		<Ore>1</Ore> <!-- Same as vanilla 3.1 -->
 		<Mercury>0</Mercury>
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
