@@ -36,7 +36,7 @@ function _MAIN_()
     -------------------------------
     ShowMyClan()
 
-    BuildWallsForNeutralTowns()
+    -- BuildWallsForNeutralTowns() -- #Universe
 
     UpdateMonsterStorage()
 
@@ -176,6 +176,7 @@ end
 ----------------------------------------------------------------------------
 -- Add Hero Handler --------------------------------------------------------
 function PlayerAddHero(sHeroName, nPlayerID)
+    SetTrigger(HERO_TOUCH_TRIGGER, sHeroName, 'HeroEngageHero')
 
     InfernoPitExt.OnAddHero(sHeroName)
     
@@ -245,6 +246,7 @@ end
 ----------------------------------------------------------------------------
 -- Hero Engage Hero Handler ------------------------------------------------
 function HeroEngageHero(sHero1Name, sHero2Name)
+    print_debug___(sHero1Name.." touched "..sHero2Name)
     RuneLimiter.OnHeroTouchHero(sHero1Name, sHero2Name, 'HeroEngageHero')
 end
 
@@ -309,7 +311,7 @@ end
 
 function HeroCapturedTown(nPrevOwnerID, nNewOwnerID, sHeroName, sTownName)
     if nPrevOwnerID == PLAYER_NONE then
-        DestroyTownBuildingToLevel(sTownName, TOWN_BUILDING_FORT, 0)
+        -- DestroyTownBuildingToLevel(sTownName, TOWN_BUILDING_FORT, 0) --#Universe
         sleep(1)
     end
 end
