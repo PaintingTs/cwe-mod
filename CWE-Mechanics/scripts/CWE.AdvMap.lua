@@ -142,6 +142,10 @@ function WeeklyRoutine()
     -- DungeonPitExt.ApplyBonus() -- #Universe
     
     -- DeathWeeksNerf.RecoverDwellingCreatures() -- #Universe
+
+    for _, sMonsterName in GetObjectNamesByType('CREATURE') do
+        SetTrigger(OBJECT_TOUCH_TRIGGER, sMonsterName, 'HeroEngageMonster')
+    end
 end
 
 
@@ -176,7 +180,9 @@ end
 ----------------------------------------------------------------------------
 -- Add Hero Handler --------------------------------------------------------
 function PlayerAddHero(sHeroName, nPlayerID)
-    SetTrigger(HERO_TOUCH_TRIGGER, sHeroName, 'HeroEngageHero')
+    SetTrigger(HERO_TOUCH_TRIGGER,        sHeroName, 'HeroEngageHero')
+    SetTrigger(HERO_ADD_SKILL_TRIGGER,    sHeroName, 'HeroGotSkill')
+    SetTrigger(HERO_REMOVE_SKILL_TRIGGER, sHeroName, 'HeroRemoveSkill')
 
     InfernoPitExt.OnAddHero(sHeroName)
     
