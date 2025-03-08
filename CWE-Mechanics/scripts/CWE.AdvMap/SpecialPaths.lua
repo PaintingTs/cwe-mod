@@ -1,6 +1,7 @@
 ----------------------------------------------------------------------------
 -- Skill's Modifications ---------------------------------------------------
 SpecialPaths = {} --> MODULE
+SpecialPaths.tAppearedHeroes = {}
 
 -- TODO: maybe all perks inside a Special Path sector should also transfer stats?
 STAT_SWAP_MAP = {
@@ -66,6 +67,8 @@ function SpecialPaths.Init()
 end
 
 function SpecialPaths.OnAddHero(sHeroName)
+    if SpecialPaths.tAppearedHeroes[sHeroName] then return end -- guard against fleed heros
+
     local race = GetHeroRace(sHeroName)
     for _, tSwapRule in STAT_SWAP_MAP do
         if contains(tSwapRule.races, race) then
@@ -79,6 +82,7 @@ function SpecialPaths.OnAddHero(sHeroName)
             end
         end
     end
+    SpecialPaths.tAppearedHeroes[sHeroName] = not nil
 end
 
 function SpecialPaths.OnAddSkill(sHeroName, nSkill, nMastery)
